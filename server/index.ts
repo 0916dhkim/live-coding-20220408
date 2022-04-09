@@ -25,7 +25,7 @@ app.post("/api/task", async (req, res, next) => {
 app.get("/api/tasks", async (req, res, next) => {
   try {
     const tasks = await prisma.task.findMany();
-    return res.json({ tasks });
+    setTimeout(() => res.json({ tasks }), 3000);
   } catch (e) {
     next(e);
   }
@@ -37,7 +37,7 @@ app.delete("/api/task/:id", async (req, res, next) => {
     const deletedTask = await prisma.task.delete({
       where: { id },
     });
-    return res.json({ task: deletedTask });
+    setTimeout(() => res.json({ task: deletedTask }), 3000);
   } catch (e) {
     next(e);
   }
